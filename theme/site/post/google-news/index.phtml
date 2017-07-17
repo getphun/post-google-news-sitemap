@@ -1,0 +1,19 @@
+<?= '<?xml version="1.0" encoding="UTF-8"?>' ?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <?php foreach($posts as $post): ?>
+    <url>
+        <loc><?= $post->page ?></loc>
+        <news:news>
+            <news:publication>
+                <news:name><?= $this->setting->site_name ?></news:name>
+                <news:language>id</news:language>
+            </news:publication>
+            <news:genres><?= $post->schema_type ?></news:genres>
+            <news:publication_date><?= $post->published->format('Y-m-d') ?></news:publication_date>
+            <news:title><?= $post->title->safe ?></news:title>
+            <news:keywords><?= hs($post->meta_keywords) ?></news:keywords>
+        </news:news>
+    </url>
+    <?php endforeach; ?>
+</urlset>
